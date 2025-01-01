@@ -2,23 +2,11 @@
 
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-
-        maxSum = nums[0]
-        Lm, Rm = 0, 0 #pointer for max sum
-        currSum = 0
-        L = 0 #pointer for current sum
-
-        for R in nums:
-            currSum += R
-
-            if currSum > maxSum:
-                maxSum = currSum
-                Lm = L
-                Rm = R
-
-            if currSum <= 0:
-                currSum = 0
-                L = R
-        return maxSum
+        max_end_here= -float("inf")
+        max_so_far= -float("inf")
+        for num in nums:
+            max_end_here = max(num, max_end_here + num)
+            max_so_far = max(max_end_here, max_so_far)
+        return max_so_far
                    
         
